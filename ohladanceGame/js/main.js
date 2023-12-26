@@ -1,4 +1,3 @@
-
 import { Game } from "./Game.js";
 
 const GAME_HEIGHT = window.innerHeight - 6;
@@ -17,16 +16,23 @@ window.addEventListener("load", function() {
     gameCanvas.width = GAME_WIDTH;
     gameCanvas.height = GAME_HEIGHT;
     
-    const enemyBar = new EnemyBar();
+    //const enemyBar = new EnemyBar();
     
     const game = new Game(GAME_WIDTH, GAME_HEIGHT);
+    let b = 0;
 
     function animate() {
-        enemyBar.draw(ctx);
-        //game.draw(ctx);
+        ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+        game.update();
+        game.draw(ctx);
+        b++;
+        if (b % 144 == 0) {
+            console.log(b);
+        }
         requestAnimationFrame(animate);
     
     }
     animate();
 
 });
+

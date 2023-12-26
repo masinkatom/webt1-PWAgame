@@ -1,14 +1,14 @@
-class Player {
+export class Player {
     constructor(game) {
         this.game = game;
-        this.radius = 50;
-        this.x = (game.width / 2) - (this.radius / 2);
-        this.y = 400;
+        this.radius = game.width * 0.065;
+        this.x = game.width / 2;
+        this.y = game.height * 0.8;
         
     }
 
-    update() {
-
+    update(xToUPdate) {
+        this.x += xToUPdate;
     }
 
     draw(ctx) {

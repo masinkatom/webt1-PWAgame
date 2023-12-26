@@ -1,4 +1,4 @@
-class EnemyBar {
+export class EnemyBar {
     constructor() {
         this.x = 0;
         this.y = 0;
@@ -8,7 +8,6 @@ class EnemyBar {
     }
 
     draw(ctx) {
-        ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
         this.y = this.yPos * (GAME_HEIGHT / Y_MAX);
         this.yPos++;
         if (this.yPos >= Y_MAX) {

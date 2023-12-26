@@ -15,6 +15,7 @@
     --webte-color-ltBlack: #1c1c1c;
     --webte-color-dkGreen: #405947;
     --webte-color-brown: #560d00;
+    --webte-color-ltYellow: #F7F1D7;
     font-size: 10px;
 }
 
@@ -57,4 +58,22 @@ body {
     max-width: 110rem;
     /* aby neprekrocil tuto hodnotu */
     margin: 0 auto;
+}
+
+/* GAME CSS - CANVAS ----------------------------------*/
+
+.gameContain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--webte-color-ltYellow);
+}
+
+.canvas {
+    border: 3px solid var(--webte-color-ltBlack);
+    background-color: white;
+}
+
+#player {
+    display: none;
 }

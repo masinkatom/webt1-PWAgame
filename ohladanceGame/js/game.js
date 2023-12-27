@@ -11,7 +11,6 @@ export class Game {
                 this.player.update(-10);
             }
             if (e.key === "ArrowRight") {
-                console.log("right");
                 this.player.update(10);
             }
         });
@@ -22,7 +21,7 @@ export class Game {
         }
 
         window.addEventListener("deviceorientation", (e) => {
-            this.player.x = e.gamma;
+            this.player.update(e.gamma);
         });
 
 

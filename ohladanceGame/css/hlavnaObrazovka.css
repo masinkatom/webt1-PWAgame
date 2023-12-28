@@ -20,7 +20,7 @@ header {
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 6em;
 }
 
 .container {
@@ -41,6 +41,7 @@ button {
     border: none;
     border-radius: 8px;
     transition: background-color 0.3s;
+    font-weight: bold; /* Делаем текст жирным */
 }
 
 button:hover {

@@ -77,3 +77,117 @@ body {
 #player {
     display: none;
 }
+
+/* css/levels.css */
+body {
+    font-family: 'Didact Gothic', sans-serif;
+    background-color: #F7F1D7;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+.level-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.button-level {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+/* main.css */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #282c34;
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+.container {
+    text-align: center;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    margin: 0 10px;
+    cursor: pointer;
+    background-color: #61dafb;
+    color: #282c34;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #4fa3d1;
+}
+
+.level-container {
+    display: flex;
+    font-weight: bold;
+    flex-wrap: wrap; /* Разрешаем перенос элементов на новую строку */
+    justify-content: space-around; /* Равномерное распределение по горизонтали */
+    align-items: center;
+    margin-top: 20px;
+    width: 100%; /* Ширина 100% для правильного отображения на всех устройствах */
+    max-width: 800px; /* Максимальная ширина контейнера, чтобы контент не разъезжался слишком сильно */
+
+}
+
+h1 {
+    font-size: 7em; /* Увеличиваем размер текста */
+    font-weight: bold; /* Делаем текст жирным */
+    width: 100%; /* Растягиваем текст по ширине контейнера */
+    margin-bottom: 20px; /* Увеличиваем отступ снизу */
+}
+
+.level-container button {
+    width: 45%; /* Ширина кнопки в 45% ширины контейнера (дает промежуток между кнопками) */
+    margin: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #61dafb;
+    color: #282c34;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.level-container button:hover {
+    background-color: #4fa3d1;
+}

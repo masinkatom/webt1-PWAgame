@@ -15,3 +15,6 @@ function openSettings() {
 function openPage(page) {
     window.location.href = page;
 }
+function openLevelsPage() {
+    window.location.href = 'chooseLevel.html';
+}

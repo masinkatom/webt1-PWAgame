@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instructions</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <h1>Instructions Page</h1>
-    <!-- Ваш контент для страницы "Instructions" -->
-    <script src="instructions.js"></script>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Game Instructions</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Righteous&display=swap">
+        <link rel="stylesheet" href="css/main.css"> <!-- Создайте файл CSS для стилей страницы настроек -->
+
+        <!-- Добавьте необходимые иконки и цвета, если нужно -->
+    </head>
+    <body>
+        <header>
+            <h1>Game Instructions </h1>
+        </header>
+        <div class="container">
+            <div class="instructions-content">
+                <p>
+                    Welcome to the settings page! Customize your game settings here.
+                </p>
+                <!-- Добавьте здесь описание игры или любой другой текст, который вы хотите отобразить -->
+                
+                <div class="buttons">
+                    <button onclick="printDescription()">Print</button>
+                    <button onclick="returnToMainPage()">Return</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/instructions.js"></script>
+    </body>
 </html>

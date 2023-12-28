@@ -77,3 +77,22 @@ body {
 #player {
     display: none;
 }
+
+#pause {
+    display: flex;
+    position: absolute;
+    cursor: pointer;
+    top: 1rem;
+    right: 1rem;
+    width: 6rem;
+    border: 4px solid rgb(0, 0, 0);
+    outline: none;
+    background-color: #ffffffbd;
+    border-radius: 5px;
+    z-index: 2;
+}
+
+#pause img {
+    color: white;
+    padding: .5rem;
+}

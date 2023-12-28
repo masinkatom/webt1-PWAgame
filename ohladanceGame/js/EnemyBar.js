@@ -1,3 +1,4 @@
+const UPDATE_INTERVAL = 16;
 const Y_MAX = 2000;
 
 export class EnemyBar {
@@ -9,18 +10,23 @@ export class EnemyBar {
         this.height = 10;
         this.yPos = 0;
         this.toDelete = false;
+        this.updateTime = 0;
     }
 
-    update(speed) {
-        this.y = this.yPos * (this.game.height / Y_MAX);
-        this.yPos += speed;
+    update(speed, deltaTime) {
+        this.updateTime += deltaTime;
         
+        if (this.updateTime > UPDATE_INTERVAL) {
+            this.updateTime %= UPDATE_INTERVAL;
+            this.y = this.yPos * (this.game.height / Y_MAX);
+            this.yPos += speed;
+        }
 
         // if obstacle is off screen
-        if (this.yPos >= Y_MAX) {
-            this.yPos = 0;
+        if (this.y >= this.game.height) {
             this.toDelete = true;
         }
+        
     }
 
     draw(ctx) {

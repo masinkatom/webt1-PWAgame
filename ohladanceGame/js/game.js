@@ -6,11 +6,12 @@ export class Game {
         this.width = width;
         this.height = height;
         this.player = new Player(this);
-        this.speed = 1;
+        this.speed = 2;
         this.readyState = false;
         this.obstacles = [];
         this.enemyTimer = 0;
         this.enemyInterval = 3000;
+        this.paused = false;
 
         window.addEventListener("keydown", (e) => {
             if (e.key === "ArrowLeft") {
@@ -42,14 +43,14 @@ export class Game {
             this.enemyTimer += deltaTime;
         }
         this.obstacles.forEach(obstacle => {
-            obstacle.update(this.speed);
+            obstacle.update(this.speed, deltaTime);
         });
     }
 
     draw(ctx) {
         this.player.draw(ctx);
         this.obstacles.forEach(obstacle => {
-            if (obstacle.toDelete == true) {
+            if (obstacle.toDelete) {
                 this.removeObstacle(obstacle);
             }
             obstacle.draw(ctx);

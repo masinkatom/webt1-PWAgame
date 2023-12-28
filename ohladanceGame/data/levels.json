@@ -2,34 +2,63 @@
     "levels": [
       {
         "id": 1,
-        "name": "test"
+        "name": "Initial D ifficulties",
+        "obstacles": 8,
+        "speed": 1
       },
       {
-        "id": 2
+        "id": 2,
+        "name": "Initial D ifficulties",
+        "obstacles": 10,
+        "speed": 2
       },
       {
-        "id": 3
+        "id": 3,
+        "name": "Initial D ifficulties",
+        "obstacles": 12,
+        "speed": 2
       },
       {
-        "id": 4
+        "id": 4,
+        "name": "Initial D ifficulties",
+        "obstacles": 14,
+        "speed": 3
       },
       {
-        "id": 5
+        "id": 5,
+        "name": "Initial D ifficulties",
+        "obstacles": 15,
+        "speed": 3
       },
       {
-        "id": 6
+        "id": 6,
+        "name": "Initial D ifficulties",
+        "obstacles": 20,
+        "speed": 4
       },
       {
-        "id": 7
+        "id": 7,
+        "name": "Initial D ifficulties",
+        "obstacles": 22,
+        "speed": 5
       },
       {
-        "id": 8
+        "id": 8,
+        "name": "Initial D ifficulties",
+        "obstacles": 24,
+        "speed": 6
       },
       {
-        "id": 9
+        "id": 9,
+        "name": "Initial D ifficulties",
+        "obstacles": 25,
+        "speed": 7
       },
       {
-        "id": 10
+        "id": 10,
+        "name": "Initial D ifficulties",
+        "obstacles": 35,
+        "speed": 9
       }
     ]
   }

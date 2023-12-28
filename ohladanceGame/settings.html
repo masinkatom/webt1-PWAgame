@@ -1,40 +1,30 @@
-<!-- settings.html -->
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Game Settings</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Righteous&display=swap">
-        <link rel="stylesheet" href="css/main.css"> <!-- Создайте файл CSS для стилей страницы настроек -->
-
-        <!-- Добавьте необходимые иконки и цвета, если нужно -->
-    </head>
-    <body>
-        <header>
-            <h1>Game Settings</h1>
-        </header>
-        <div class="container">
-            <div class="settings-content">
-                <p>
-                    Welcome to the settings page! Customize your game settings here.
-                </p>
-                <div class="sound-options">
-                    <label for="musicCheckbox">Music:</label>
-                    <input type="checkbox" id="musicCheckbox" onchange="toggleMusic()">
-                    
-                    <label for="soundCheckbox">Sound Effects:</label>
-                    <input type="checkbox" id="soundCheckbox" onchange="toggleSound()">
-                </div>
-
-                <div class="buttons">
-                    <button onclick="returnToMainPage()">Return</button>
-                </div>
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="css/main.css"> <!-- Создайте файл CSS для стилей страницы настроек -->
+</head>
+<body>
+    <header>
+        <h1>Settings</h1>
+    </header>
+    <div class="container">
+        <div class="settings-content">
+            <label>
+                <input type="checkbox" id="musicCheckbox" checked> Enable Music
+            </label>
+            <br>
+            <label>
+                <input type="checkbox" id="soundCheckbox" checked> Enable Sound
+            </label>
+            <br>
+            <button onclick="returnToMainPage()">Return</button>
         </div>
+    </div>
 
-        <script src="js/settings.js"></script>
-    </body>
+    <script src="js/settings.js"></script>
+</body>
 </html>
 

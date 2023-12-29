@@ -79,7 +79,7 @@ body {
 }
 
 #pause {
-    display: flex;
+    display: none;
     position: absolute;
     cursor: pointer;
     top: 1rem;

@@ -1,7 +1,7 @@
 {
     "name": "Ballin Through Life",
     "short_name": "Ballin Thru Life",
-    "description": "A simple ball obstacle avoiding game.",
+    "description": "Jednoduchá hra na vyhýbanie sa prekážkam.",
     "start_url": "index.html",
     "display": "fullscreen",
     "background_color": "#F7F1D7",

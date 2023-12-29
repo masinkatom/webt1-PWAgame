@@ -4,7 +4,8 @@ export class Player {
         this.radius = game.width * 0.065;
         this.x = game.width / 2;
         this.y = game.height * 0.8;
-        this.image = document.getElementById("player");
+        this.image = new Image();
+        this.image.src = "./images/ball-72.png";
     }
 
     update(xToUPdate) {
@@ -17,7 +18,7 @@ export class Player {
     draw(ctx) {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-        ctx.fill();
+        // ctx.fill();
         ctx.drawImage(this.image, this.x - (this.radius ), this.y - (this.radius), this.radius * 2, this.radius * 2);
     }
 }

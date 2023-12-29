@@ -7,12 +7,13 @@ export class Game {
         this.height = height;
         this.player = new Player(this);
         this.speed = 2;
-        this.readyState = false;
         this.obstacles = [];
         this.enemyTimer = 0;
         this.enemyInterval = 3000;
-        this.paused = false;
+        this.paused = true;
 
+
+        // movement with arrow keys
         window.addEventListener("keydown", (e) => {
             if (e.key === "ArrowLeft") {
                 this.player.update(-10);
@@ -22,18 +23,25 @@ export class Game {
             }
         });
 
-        if (DeviceMotionEvent &&
-            typeof DeviceMotionEvent.requestPermission === "function") {
-            DeviceMotionEvent.requestPermission();
+
+        // movement with device tilt/gyro sensor
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener(
+                "deviceorientation",
+                (event) => {
+                    const leftToRight = event.gamma; // gamma: left to right
+                    handleOrientationEvent(leftToRight);
+                },
+                true,
+            );
         }
 
-        window.addEventListener("deviceorientation", (e) => {
-            this.player.update(e.gamma);
-        });
-
-
+        const handleOrientationEvent = (leftToRight) => {
+            this.player.update(leftToRight);
+        };
     }
 
+    // method to updatee items on canvas, called from animate every couple miliseconds
     update(deltaTime) {
         if (this.enemyTimer > this.enemyInterval) {
             this.addObstacle();
@@ -47,6 +55,7 @@ export class Game {
         });
     }
 
+    // method to draw items on canvas, called from animate every couple miliseconds
     draw(ctx) {
         this.player.draw(ctx);
         this.obstacles.forEach(obstacle => {
@@ -55,18 +64,18 @@ export class Game {
             }
             obstacle.draw(ctx);
         });
-
-        // if (readyState) {
-
-        // }
     }
 
+    // addition of one obstaclee
     addObstacle() {
         this.obstacles.push(new EnemyBar(this));
         console.log(this.obstacles);
     }
 
+    // removal of one obstacle
     removeObstacle(obstacle) {
         this.obstacles.splice(this.obstacles.indexOf(obstacle), 1);
     }
+
+
 }

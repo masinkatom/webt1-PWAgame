@@ -1,3 +1,5 @@
+import { Line } from "./Line.js";
+
 const UPDATE_INTERVAL = 16;
 const Y_MAX = 2000;
 
@@ -11,13 +13,19 @@ export class EnemyBar {
         this.yPos = 0;
         this.toDelete = false;
         this.updateTime = 0;
+        this.emptyIndex = Math.floor(Math.random() * 5);
+        this.emptyIndex2 = Math.floor(Math.random() * 5);
+        console.log(this.emptyIndex);
+        this.lines = [];
+        this.fillLines();
     }
 
     update(speed, deltaTime) {
         this.updateTime += deltaTime;
         
+        // update of position with regards of screen height and refresh rate
         if (this.updateTime > UPDATE_INTERVAL) {
-            this.updateTime %= UPDATE_INTERVAL;
+            this.updateTime -= UPDATE_INTERVAL;
             this.y = this.yPos * (this.game.height / Y_MAX);
             this.yPos += speed;
         }
@@ -30,10 +38,19 @@ export class EnemyBar {
     }
 
     draw(ctx) {
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        this.lines.forEach(line => {
+            ctx.fillRect(line.x, this.y, line.width, line.height);
+        });
     }
 
-
-
+    fillLines() {
+        let xTmp = 0;
+        for (let i = 0; i < 5; i++) {
+            if(i != this.emptyIndex && i != this.emptyIndex2) {
+                this.lines.push(new Line(xTmp, this.y, this.width/5, this.height));
+            }
+            xTmp += this.width/5;
+        }
+    }
 
 }

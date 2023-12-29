@@ -1,7 +1,7 @@
 import { Game } from "./Game.js";
 
 const GAME_HEIGHT = window.innerHeight - 6;
-const GAME_WIDTH = window.innerWidth - 6;
+const GAME_WIDTH = GAME_HEIGHT / 2;
 
 let obstacleAmount = 0;
 let btnPause = document.getElementById("pause");
@@ -22,6 +22,14 @@ window.addEventListener("load", async () => {
     let prevTime = 0;
     
     const game = new Game(GAME_WIDTH, GAME_HEIGHT);
+
+    const handleClickCanvas = () => {
+        btnPause.style.display = "flex";
+        game.paused = false;
+        gameCanvas.removeEventListener("click", handleClickCanvas);
+    };
+
+    gameCanvas.addEventListener("click", handleClickCanvas);
 
     btnPause.addEventListener("click", () => {
         if (!game.paused) {

@@ -40,6 +40,7 @@ export class EnemyBar {
     draw(ctx) {
         this.lines.forEach(line => {
             ctx.fillRect(line.x, this.y, line.width, line.height);
+            line.y = this.y;
         });
     }
 

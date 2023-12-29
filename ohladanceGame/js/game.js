@@ -43,7 +43,10 @@ export class Game {
 
     // method to updatee items on canvas, called from animate every couple miliseconds
     update(deltaTime) {
-        if (this.enemyTimer > this.enemyInterval) {
+
+        console.log(this.checkForCollision());
+        
+        if (this.enemyTimer > this.enemyInterval && this.obstacles.length < 1) {
             this.addObstacle();
             this.enemyTimer = 0;
         }
@@ -53,6 +56,7 @@ export class Game {
         this.obstacles.forEach(obstacle => {
             obstacle.update(this.speed, deltaTime);
         });
+        
     }
 
     // method to draw items on canvas, called from animate every couple miliseconds
@@ -75,6 +79,48 @@ export class Game {
     // removal of one obstacle
     removeObstacle(obstacle) {
         this.obstacles.splice(this.obstacles.indexOf(obstacle), 1);
+    }
+
+    checkForCollision() {
+        this.obstacles.forEach(obstacle => {
+            obstacle.lines.forEach(line => {
+                
+                //console.log("x: ", this.player.x, "y:", this.player.y);
+                // from https://stackoverflow.com/questions/21089959/detecting-collision-of-rectangle-with-circle
+
+                // Find the vertical & horizontal (distX/distY) distances between the 
+                // circle’s center and the rectangle’s center
+                let distX = Math.abs(this.player.x - line.x - line.width / 2);
+                let distY = Math.abs(this.player.y - line.y - line.height / 2);
+
+                // If the distance is greater than halfCircle + halfRect, 
+                // then they are too far apart to be colliding
+                if (distX > (line.width / 2 + this.player.radius)) { 
+                    return false; 
+                }
+                if (distY > (line.height / 2 + this.player.radius)) { 
+                    return false; 
+                }
+
+                // If the distance is less than halfRect then they are definitely colliding
+                if (distX <= (line.width / 2)) { 
+                    return true;
+                }
+                if (distY <= (line.height / 2)) {
+                    return true;
+                }
+
+                // Pythagoras formula to compare the distance between circle and rect centers.
+                let dx = distX - line.width / 2;
+                let dy = distY - line.height / 2;
+
+                return (dx * dx + dy * dy <= (this.player.radius * this.player.radius));
+
+            });
+            
+
+        });
+        
     }
 
 

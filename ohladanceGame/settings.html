@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
-    <link rel="stylesheet" href="css/main.css"> <!-- Создайте файл CSS для стилей страницы настроек -->
+    <link rel="stylesheet" href="css/main.css"> <!-- Ваш основной файл стилей -->
+    <link rel="stylesheet" href="css/checkbox-styles.css"> <!-- Новый файл стилей для чекбоксов -->
 </head>
 <body>
     <header>
@@ -12,13 +13,15 @@
     </header>
     <div class="container">
         <div class="settings-content">
-            <label>
-                <input type="checkbox" id="musicCheckbox" checked> Enable Music
-            </label>
+            <div class="inputGroup">
+                <input type="checkbox" id="musicCheckbox" checked>
+                <label for="musicCheckbox">Enable Music</label>
+            </div>
             <br>
-            <label>
-                <input type="checkbox" id="soundCheckbox" checked> Enable Sound
-            </label>
+            <div class="inputGroup">
+                <input type="checkbox" id="soundCheckbox" checked>
+                <label for="soundCheckbox">Enable Sound</label>
+            </div>
             <br>
             <button onclick="returnToMainPage()">Return</button>
         </div>

@@ -11,6 +11,8 @@ export class Game {
         this.enemyTimer = 0;
         this.enemyInterval = 3000;
         this.paused = true;
+        this.end = false;
+        this.doubleCounter = 0;
 
 
         // movement with arrow keys
@@ -44,11 +46,20 @@ export class Game {
     // method to updatee items on canvas, called from animate every couple miliseconds
     update(deltaTime) {
 
-        console.log(this.checkForCollision());
+        this.end = this.checkForCollision();
         
-        if (this.enemyTimer > this.enemyInterval && this.obstacles.length < 1) {
-            this.addObstacle();
+        // doubleCounter is to decide whether is it time for obstacle with two "holes"
+        if (this.enemyTimer > this.enemyInterval) {
+            if (this.doubleCounter == 2) {
+                this.addObstacle(true);
+                this.doubleCounter = 0;
+            }
+            else {
+                this.addObstacle(false);
+            }
+            
             this.enemyTimer = 0;
+            this.doubleCounter++;
         }
         else {
             this.enemyTimer += deltaTime;
@@ -71,8 +82,8 @@ export class Game {
     }
 
     // addition of one obstaclee
-    addObstacle() {
-        this.obstacles.push(new EnemyBar(this));
+    addObstacle(double) {
+        this.obstacles.push(new EnemyBar(this, double));
         console.log(this.obstacles);
     }
 
@@ -83,30 +94,33 @@ export class Game {
 
     checkForCollision() {
         this.obstacles.forEach(obstacle => {
-            obstacle.lines.forEach(line => {
+            obstacle.lines.forEach((line, index) => {
                 
                 //console.log("x: ", this.player.x, "y:", this.player.y);
                 // from https://stackoverflow.com/questions/21089959/detecting-collision-of-rectangle-with-circle
 
                 // Find the vertical & horizontal (distX/distY) distances between the 
                 // circle’s center and the rectangle’s center
-                let distX = Math.abs(this.player.x - line.x - line.width / 2);
-                let distY = Math.abs(this.player.y - line.y - line.height / 2);
+                let distX = Math.abs(this.player.x - line.x - (line.width / 2));
+                let distY = Math.abs(this.player.y - line.y - (line.height / 2));
 
                 // If the distance is greater than halfCircle + halfRect, 
-                // then they are too far apart to be colliding
+                // then they are too far apart to be colliding, so we
+                // get out of this iteration of loop
                 if (distX > (line.width / 2 + this.player.radius)) { 
-                    return false; 
+                    return;
                 }
                 if (distY > (line.height / 2 + this.player.radius)) { 
-                    return false; 
+                    return;
                 }
 
                 // If the distance is less than halfRect then they are definitely colliding
                 if (distX <= (line.width / 2)) { 
+                    this.paused = true;
                     return true;
                 }
                 if (distY <= (line.height / 2)) {
+                    this.paused = true;
                     return true;
                 }
 
@@ -114,12 +128,16 @@ export class Game {
                 let dx = distX - line.width / 2;
                 let dy = distY - line.height / 2;
 
-                return (dx * dx + dy * dy <= (this.player.radius * this.player.radius));
+                if((dx * dx + dy * dy) <= (this.player.radius * this.player.radius))  {
+                    this.paused = true;
+                    return true;
+                }
 
             });
             
 
         });
+        return false;
         
     }
 

@@ -18,7 +18,7 @@ export class Player {
     draw(ctx) {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-        // ctx.fill();
+        ctx.fill();
         ctx.drawImage(this.image, this.x - (this.radius ), this.y - (this.radius), this.radius * 2, this.radius * 2);
     }
 }

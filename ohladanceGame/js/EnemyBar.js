@@ -4,7 +4,7 @@ const UPDATE_INTERVAL = 16;
 const Y_MAX = 2000;
 
 export class EnemyBar {
-    constructor(game) {
+    constructor(game, double) {
         this.game = game;
         this.x = 0;
         this.y = 0;
@@ -14,8 +14,12 @@ export class EnemyBar {
         this.toDelete = false;
         this.updateTime = 0;
         this.emptyIndex = Math.floor(Math.random() * 5);
-        this.emptyIndex2 = Math.floor(Math.random() * 5);
-        console.log(this.emptyIndex);
+        this.emptyIndex2 = this.emptyIndex;
+        if (double) {
+            this.emptyIndex2 = Math.floor(Math.random() * 5);
+        }
+        
+        console.log(this.emptyIndex, "ei2",this.emptyIndex2);
         this.lines = [];
         this.fillLines();
     }

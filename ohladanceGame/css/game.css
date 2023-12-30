@@ -1,0 +1,98 @@
+@import url(https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Righteous&display=swap);
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --webte-color-yellow: rgb(255, 234, 0);
+    --webte-color-purple: #63699b;
+    --webte-color-orange: #AD5F00;
+    --webte-color-ltBlue: #8fd2ff;
+    --webte-color-green: #98f5cad3;
+    --webte-color-ltBlack: #1c1c1c;
+    --webte-color-dkGreen: #405947;
+    --webte-color-brown: #560d00;
+    --webte-color-ltYellow: #F7F1D7;
+    font-size: 10px;
+}
+
+p {
+    font-size: 2rem;
+    margin: .7rem 0;
+}
+
+h1 {
+    font-size: 4.5rem;
+    margin: 2rem 0;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin: 1.5rem 0;
+}
+
+h3 {
+    font-size: 2.2rem;
+    margin: 1.5rem 0;
+}
+
+img {
+    width: 100%;
+}
+
+body {
+    margin: 0 auto;
+    font-family: 'Righteous', sans-serif;
+    /*background: linear-gradient(135deg, rgba(225, 255, 0, 0.356) 0%, rgba(225, 255, 0, 0.356) 100%) no-repeat;*/
+    background-size: 100px 100px;
+    background-position: 0 0, 50px 50px;
+
+}
+
+.container {
+    animation: pageload 1s;
+    width: 100%;
+    max-width: 110rem;
+    /* aby neprekrocil tuto hodnotu */
+    margin: 0 auto;
+}
+
+/* GAME CSS - CANVAS ----------------------------------*/
+
+.gameContain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--webte-color-ltYellow);
+}
+
+.canvas {
+    border: 3px solid var(--webte-color-ltBlack);
+    background-color: white;
+}
+
+#player {
+    display: none;
+}
+
+#pause {
+    display: none;
+    position: absolute;
+    cursor: pointer;
+    top: 1rem;
+    right: 1rem;
+    width: 6rem;
+    border: 4px solid rgb(0, 0, 0);
+    outline: none;
+    background-color: #ffffffbd;
+    border-radius: 5px;
+    z-index: 2;
+}
+
+#pause img {
+    color: white;
+    padding: .5rem;
+}

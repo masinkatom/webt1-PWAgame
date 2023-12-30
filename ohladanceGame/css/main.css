@@ -60,43 +60,6 @@ body {
     margin: 0 auto;
 }
 
-/* GAME CSS - CANVAS ----------------------------------*/
-
-.gameContain {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--webte-color-ltYellow);
-}
-
-.canvas {
-    border: 3px solid var(--webte-color-ltBlack);
-    background-color: white;
-}
-
-#player {
-    display: none;
-}
-
-#pause {
-    display: none;
-    position: absolute;
-    cursor: pointer;
-    top: 1rem;
-    right: 1rem;
-    width: 6rem;
-    border: 4px solid rgb(0, 0, 0);
-    outline: none;
-    background-color: #ffffffbd;
-    border-radius: 5px;
-    z-index: 2;
-}
-
-#pause img {
-    color: white;
-    padding: .5rem;
-}
-
 /* css/levels.css */
 body {
     font-family: 'Didact Gothic', sans-serif;

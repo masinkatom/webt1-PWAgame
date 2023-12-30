@@ -3,9 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>PWA Game </title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Righteous&display=swap">
+
         <link rel="icon" type="image/x-icon" href="images/ball.png">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/hlavnaObrazovka.css">
         <link rel="manifest" href="manifest.json">
         <!-- ios support -->
         <link rel="apple-touch-icon" href="images/icons/92.png">
@@ -13,12 +15,22 @@
         <meta name="theme-color" content="#F7F1D7">
     </head>
     <body>
+        <header>
+            <h1>Welcome to Our PWA Game</h1>
+        </header>
         <div class="container">
-            <h1>ahoj</h1>
-            <a href="game.html">Zapni hru!</a>
+            <div class="buttons">
+                <button onclick="openLevelsPage()">New Game</button>
+                <button onclick="openPage('instructions.html')">Instructions</button>
+                <button onclick="openPage('settings.html')">Settings</button>
+                
+            </div>
+            
         </div>
         
+        <script src="js/hlavnaObrazovka.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/ui.js"></script>
+        <script src="js/settings.js"></script>
     </body>
-    <script src="js/app.js"></script>
-    <script src="js/ui.js"></script>
 </html>

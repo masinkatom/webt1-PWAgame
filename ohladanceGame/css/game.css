@@ -10,7 +10,7 @@
     --webte-color-yellow: rgb(255, 234, 0);
     --webte-color-purple: #63699b;
     --webte-color-orange: #AD5F00;
-    --webte-color-ltBlue: #8fd2ff;
+    --webte-color-ltBlue: #6aaaff;
     --webte-color-green: #98f5cad3;
     --webte-color-ltBlack: #1c1c1c;
     --webte-color-dkGreen: #405947;
@@ -20,7 +20,7 @@
     font-size: 10px;
 }
 
-p {
+p, a {
     font-size: 2rem;
     margin: .7rem 0;
 }
@@ -101,4 +101,19 @@ body {
 #pause img {
     color: white;
     padding: .5rem;
+}
+
+.endscreen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    top: 40%;
+    background-color: white;
+    padding: 1rem;
+}
+
+.endscreen a {
+    color: var(--webte-color-ltBlue);
 }

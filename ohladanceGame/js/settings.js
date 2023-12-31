@@ -8,6 +8,7 @@
   musicEnabled = musicEnabled === null ? true : musicEnabled;
 
   const SOUND = new Audio('music/test2.mp3');
+  console.log(SOUND); // Add this line to check if there are any issues with the audio object
   SOUND.volume = 0.1;
 
   const SOUND_STORAGE = 'misw-settings-sound';
@@ -73,11 +74,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const musicCheckbox = document.getElementById('musicCheckbox');
   const soundCheckbox = document.getElementById('soundCheckbox');
 
-  // Установите начальные значения чекбоксов
+  
   musicCheckbox.checked = window.music.getValue();
   soundCheckbox.checked = window.sound.getValue();
 
-  // Добавьте обработчики событий для чекбоксов
+ 
   musicCheckbox.addEventListener('change', function () {
     window.music.handler(this.checked);
   });
@@ -85,10 +86,15 @@ document.addEventListener('DOMContentLoaded', function () {
   soundCheckbox.addEventListener('change', function () {
     window.sound.handler(this.checked);
   });
+  soundCheckbox.addEventListener('change', function () {
+    console.log('Sound Checkbox Changed:', this.checked);
+    window.sound.handler(this.checked);
+  });
 });
 
+
 function returnToMainPage() {
-  // Здесь вы можете добавить код для возврата на главную страницу
+
   window.location.href = "index.html";
 }
 

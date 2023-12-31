@@ -9,13 +9,17 @@ document.addEventListener("DOMContentLoaded", function () {
         const levelContainer = document.querySelector(".level-container");
 
         levels.forEach(level => {
+            const linkToGame = document.createElement("a");
+            linkToGame.href = "game.html";
             const button = document.createElement("button");
             button.textContent = `LEVEL ${level.id}`; // Используйте только id уровня
             button.addEventListener("click", function () {
                 console.log(`Selected Level: ${level.id}`);
+                localStorage.setItem("levelId", level.id);
+                console.log(localStorage);
             });
-
-            levelContainer.appendChild(button);
+            linkToGame.appendChild(button);
+            levelContainer.appendChild(linkToGame);
         });
     }
 });

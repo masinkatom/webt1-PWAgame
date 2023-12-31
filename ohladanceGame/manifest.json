@@ -3,9 +3,9 @@
     "short_name": "Ballin Thru Life",
     "description": "Jednoduchá hra na vyhýbanie sa prekážkam.",
     "start_url": "index.html",
-    "display": "fullscreen",
-    "background_color": "#F7F1D7",
-    "theme_color": "#F7F1D7",
+    "display": "standalone",
+    "background_color": "#00001a",
+    "theme_color": "#00001a",
     "orientation": "portrait",
     "icons": [
         {

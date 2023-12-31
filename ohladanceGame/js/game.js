@@ -12,46 +12,31 @@ export class Game {
         this.obstacleAmount = obstacleAmount;
         this.obstacleCounter = 0;
         this.enemyTimer = 0;
-        this.enemyInterval = 3000;
+        this.enemyInterval = 1500;
         this.paused = true;
         this.started = false;
-        this.end = false;
+        this.failed = false;
+        this.ended = false;
         this.doubleCounter = 0;
         this.level = level;
         this.ui = new UI(this);
 
-        // movement with arrow keys
-        window.addEventListener("keydown", (e) => {
-            if (e.key === "ArrowLeft") {
-                this.player.update(-10);
-            }
-            if (e.key === "ArrowRight") {
-                this.player.update(10);
-            }
-        });
+        this.addMovementListeners();
 
-
-        // movement with device tilt/gyro sensor
-        if (window.DeviceOrientationEvent) {
-            window.addEventListener(
-                "deviceorientation",
-                (event) => {
-                    const leftToRight = event.gamma; // gamma: left to right
-                    handleOrientationEvent(leftToRight);
-                },
-                true,
-            );
-        }
-
-        const handleOrientationEvent = (leftToRight) => {
-            this.player.update(leftToRight);
-        };
+        
     }
 
     // method to updatee items on canvas, called from animate every couple miliseconds
     update(deltaTime) {
-
-        this.end = this.checkForCollision();
+        
+        this.checkForCollision();
+        if (this.obstacleCounter > 0) {
+            if (this.obstacles[this.obstacles.length-1].y > this.player.y + 50) {
+                this.ended = true;
+            }
+        }
+        
+        
 
         // doubleCounter is to decide whether is it time for obstacle with two "holes"
         if (this.enemyTimer > this.enemyInterval) {
@@ -131,10 +116,12 @@ export class Game {
                 // If the distance is less than halfRect then they are definitely colliding
                 if (distX <= (line.width / 2)) {
                     this.paused = true;
+                    this.failed = true;
                     return true;
                 }
                 if (distY <= (line.height / 2)) {
                     this.paused = true;
+                    this.failed = true;
                     return true;
                 }
 
@@ -144,6 +131,7 @@ export class Game {
 
                 if ((dx * dx + dy * dy) <= (this.player.radius * this.player.radius)) {
                     this.paused = true;
+                    this.failed = true;
                     return true;
                 }
 
@@ -153,6 +141,35 @@ export class Game {
         });
         return false;
 
+    }
+
+    addMovementListeners() {
+        // movement with arrow keys
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowLeft") {
+                this.player.update(-10);
+            }
+            if (e.key === "ArrowRight") {
+                this.player.update(10);
+            }
+        });
+
+
+        // movement with device tilt/gyro sensor
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener(
+                "deviceorientation",
+                (event) => {
+                    const leftToRight = event.gamma; // gamma: left to right
+                    handleOrientationEvent(leftToRight);
+                },
+                true,
+            );
+        }
+
+        const handleOrientationEvent = (leftToRight) => {
+            this.player.update(leftToRight);
+        };
     }
 
 

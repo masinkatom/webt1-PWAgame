@@ -9,7 +9,8 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #282c34;
+    /*background-color: #282c34;*/
+    background: linear-gradient(180deg, rgb(13, 10, 45) 0%, rgb(49, 78, 95) 100%) no-repeat;
     color: white;
 }
 

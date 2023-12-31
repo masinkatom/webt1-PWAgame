@@ -5,4 +5,4 @@ export class Line {
         this.width = width;
         this.height = height;
     }
-}
+} 

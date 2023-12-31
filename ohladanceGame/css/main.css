@@ -101,7 +101,8 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #282c34;
+    /*background-color: #282c34;*/
+    background: linear-gradient(180deg, rgb(13, 10, 45) 0%, rgb(49, 78, 95) 100%) no-repeat;
     color: white;
 }
 
@@ -159,8 +160,12 @@ h1 {
     margin-bottom: 20px; /* Увеличиваем отступ снизу */
 }
 
+.level-container a {
+    width: 60%;
+}
+
 .level-container button {
-    width: 45%; /* Ширина кнопки в 45% ширины контейнера (дает промежуток между кнопками) */
+    width: 100%; /* Ширина кнопки в 45% ширины контейнера (дает промежуток между кнопками) */
     margin: 10px;
     font-weight: bold;
     cursor: pointer;

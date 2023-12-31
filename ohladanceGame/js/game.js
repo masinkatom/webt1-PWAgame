@@ -1,19 +1,24 @@
 import { EnemyBar } from "./EnemyBar.js";
 import { Player } from "./Player.js";
+import { UI } from "./UI.js";
 
 export class Game {
-    constructor(width, height) {
+    constructor(width, height, level, obstacleAmount, speed) {
         this.width = width;
         this.height = height;
         this.player = new Player(this);
-        this.speed = 2;
+        this.speed = speed;
         this.obstacles = [];
+        this.obstacleAmount = obstacleAmount;
+        this.obstacleCounter = 0;
         this.enemyTimer = 0;
         this.enemyInterval = 3000;
         this.paused = true;
+        this.started = false;
         this.end = false;
         this.doubleCounter = 0;
-
+        this.level = level;
+        this.ui = new UI(this);
 
         // movement with arrow keys
         window.addEventListener("keydown", (e) => {
@@ -47,19 +52,23 @@ export class Game {
     update(deltaTime) {
 
         this.end = this.checkForCollision();
-        
+
         // doubleCounter is to decide whether is it time for obstacle with two "holes"
         if (this.enemyTimer > this.enemyInterval) {
-            if (this.doubleCounter == 2) {
-                this.addObstacle(true);
-                this.doubleCounter = 0;
+            // generate only certain amount of obstacles
+            if (this.obstacleCounter < this.obstacleAmount) {
+                if (this.doubleCounter == 2) {
+                    this.addObstacle(true);
+                    this.doubleCounter = 0;
+                }
+                else {
+                    this.addObstacle(false);
+                }
+                this.obstacleCounter ++;
+                this.enemyTimer = 0;
+                this.doubleCounter++;
+
             }
-            else {
-                this.addObstacle(false);
-            }
-            
-            this.enemyTimer = 0;
-            this.doubleCounter++;
         }
         else {
             this.enemyTimer += deltaTime;
@@ -67,18 +76,23 @@ export class Game {
         this.obstacles.forEach(obstacle => {
             obstacle.update(this.speed, deltaTime);
         });
-        
+
     }
 
     // method to draw items on canvas, called from animate every couple miliseconds
     draw(ctx) {
-        this.player.draw(ctx);
-        this.obstacles.forEach(obstacle => {
-            if (obstacle.toDelete) {
-                this.removeObstacle(obstacle);
-            }
-            obstacle.draw(ctx);
-        });
+        this.ui.draw(ctx);
+        if (this.started) {
+            this.player.draw(ctx);
+            this.obstacles.forEach(obstacle => {
+                if (obstacle.toDelete) {
+                    this.removeObstacle(obstacle);
+                }
+                obstacle.draw(ctx);
+            });
+        }
+        this.ui.drawCobbles(ctx);
+        
     }
 
     // addition of one obstaclee
@@ -95,7 +109,7 @@ export class Game {
     checkForCollision() {
         this.obstacles.forEach(obstacle => {
             obstacle.lines.forEach((line, index) => {
-                
+
                 //console.log("x: ", this.player.x, "y:", this.player.y);
                 // from https://stackoverflow.com/questions/21089959/detecting-collision-of-rectangle-with-circle
 
@@ -107,15 +121,15 @@ export class Game {
                 // If the distance is greater than halfCircle + halfRect, 
                 // then they are too far apart to be colliding, so we
                 // get out of this iteration of loop
-                if (distX > (line.width / 2 + this.player.radius)) { 
+                if (distX > (line.width / 2 + this.player.radius)) {
                     return;
                 }
-                if (distY > (line.height / 2 + this.player.radius)) { 
+                if (distY > (line.height / 2 + this.player.radius)) {
                     return;
                 }
 
                 // If the distance is less than halfRect then they are definitely colliding
-                if (distX <= (line.width / 2)) { 
+                if (distX <= (line.width / 2)) {
                     this.paused = true;
                     return true;
                 }
@@ -128,17 +142,17 @@ export class Game {
                 let dx = distX - line.width / 2;
                 let dy = distY - line.height / 2;
 
-                if((dx * dx + dy * dy) <= (this.player.radius * this.player.radius))  {
+                if ((dx * dx + dy * dy) <= (this.player.radius * this.player.radius)) {
                     this.paused = true;
                     return true;
                 }
 
             });
-            
+
 
         });
         return false;
-        
+
     }
 
 

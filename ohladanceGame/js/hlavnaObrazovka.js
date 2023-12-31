@@ -18,3 +18,7 @@ function openPage(page) {
 function openLevelsPage() {
     window.location.href = 'chooseLevel.html';
 }
+function returnToMainPage() {
+    window.location.href = "index.html";
+  }
+  

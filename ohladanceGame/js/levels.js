@@ -1,4 +1,8 @@
 // levels.js
+function returnToMainPage() {
+    window.location.href = "index.html";
+  }
+  
 document.addEventListener("DOMContentLoaded", function () {
     fetch("data/levels.json")
         .then(response => response.json())
@@ -12,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const linkToGame = document.createElement("a");
             linkToGame.href = "game.html";
             const button = document.createElement("button");
-            button.textContent = `LEVEL ${level.id}`; // Используйте только id уровня
+            button.textContent = `LEVEL ${level.id}`; 
             button.addEventListener("click", function () {
                 console.log(`Selected Level: ${level.id}`);
                 localStorage.setItem("levelId", level.id);

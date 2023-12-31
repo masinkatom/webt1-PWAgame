@@ -11,6 +11,5 @@ function printDiv() {
     a.print();
 }
 function returnToMainPage() {
-    // Здесь вы можете добавить код для возврата на главную страницу
     window.location.href = "index.html";
 }

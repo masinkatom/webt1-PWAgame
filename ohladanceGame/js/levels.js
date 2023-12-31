@@ -1,4 +1,8 @@
 // levels.js
+function returnToMainPage() {
+    window.location.href = "index.html";
+  }
+  
 document.addEventListener("DOMContentLoaded", function () {
     fetch("data/levels.json")
         .then(response => response.json())

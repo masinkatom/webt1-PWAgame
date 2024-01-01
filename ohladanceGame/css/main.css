@@ -202,4 +202,15 @@ button:hover {
     cursor: pointer;
     visibility: hidden;
   }
-  
+  button + button {
+    margin-top: 15px;
+}
+  @media only screen and (max-width: 600px) {
+    button {
+        width: 50%;
+    }
+    .inputGroup {
+      width: 50%;
+      margin: 0 auto;
+  }
+} 

@@ -18,8 +18,6 @@ export class EnemyBar {
         if (double) {
             this.emptyIndex2 = Math.floor(Math.random() * 5);
         }
-        
-        console.log(this.emptyIndex, "ei2",this.emptyIndex2);
         this.lines = [];
         this.fillLines();
     }
@@ -48,6 +46,7 @@ export class EnemyBar {
         });
     }
 
+    // method to create a full bar made out of lines
     fillLines() {
         let xTmp = 0;
         for (let i = 0; i < 5; i++) {

@@ -106,8 +106,7 @@ button:hover {
     width: 100%; 
     margin: 10px;
     font-weight: bold;
-    cursor: pointer;
-    background-color: #61dafb;
+    background-color: #377c8f;
     color: #282c34;
     border: none;
     border-radius: 8px;

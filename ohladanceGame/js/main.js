@@ -18,18 +18,13 @@ let genTime = 0;
 window.addEventListener("load", async () => {
     await loadData();
 
-    /**
-     * @type {HTMLCanvasElement}
-     */
     const gameCanvas = document.getElementById("canvas1");
     const ctx = gameCanvas.getContext("2d");
 
-    console.log("W ", GAME_WIDTH, ", H ", GAME_HEIGHT, ", OBS ", obstacleAmount, ", SPEED ", speed, ", GT ", genTime);
-
     gameCanvas.width = GAME_WIDTH;
     gameCanvas.height = GAME_HEIGHT;
+    
     let prevTime = 0;
-
     let game = new Game(GAME_WIDTH, GAME_HEIGHT, currentLevel, obstacleAmount, speed, genTime);
 
     const handleClickCanvas = () => {
@@ -39,6 +34,7 @@ window.addEventListener("load", async () => {
         gameCanvas.removeEventListener("click", handleClickCanvas);
     };
 
+    // different event listeners to sort out the game cycle
     gameCanvas.addEventListener("click", handleClickCanvas);
 
     btnPause.addEventListener("click", () => {
@@ -50,7 +46,6 @@ window.addEventListener("load", async () => {
             game.paused = false;
             btnPause.innerHTML = `<img src="images/pause.svg" alt="pause">`;
         }
-        console.log("paused ", game.paused);
     });
 
     window.addEventListener("blur", () => {
@@ -64,6 +59,8 @@ window.addEventListener("load", async () => {
         btnPause.innerHTML = `<img src="images/pause.svg" alt="pause">`;
     });
 
+
+    // function responsible for animating the canvas
     function animate(currentTime) {
         if (!game.ended) {
             if (!game.started) {
@@ -89,16 +86,21 @@ window.addEventListener("load", async () => {
         }
         else {
             endMsg.style.display = "flex";
+            let nextLvl = parseInt(currentLevel) + 1;
+            if (parseInt(localStorage.getItem("maxLevel")) < nextLvl) {
+                localStorage.setItem("maxLevel", nextLvl);
+            }
             animateEnd();
         }
     }
     animate(0);
 
+    // little animation to get ball out of the canvas after finishing game
     function animateEnd() {
-        if (game.player.x < GAME_WIDTH + game.player.radius + 1) {
+        if (game.player.x < GAME_WIDTH + game.player.radius + 2) {
 
             ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-            game.player.x += 4;
+            game.player.x += 5;
             game.player.draw(ctx);
             game.draw(ctx);
             requestAnimationFrame(animateEnd);
@@ -106,11 +108,10 @@ window.addEventListener("load", async () => {
     }
 });
 
-
+// loads data from json
 async function loadData() {
 
     currentLevel = localStorage.getItem("levelId");
-    console.log(currentLevel);
 
     return fetch('./data/levels.json')
         .then(response => {
@@ -122,7 +123,6 @@ async function loadData() {
         .then(result => {
 
             if (result != null) {
-                console.log(result.levels);
                 getCurrLevelData(result.levels[currentLevel - 1]);
             }
             else {
@@ -131,6 +131,7 @@ async function loadData() {
         });
 }
 
+// gets current data of level from loaded json
 async function getCurrLevelData(level) {
     obstacleAmount = level.obstacles;
     speed = level.speed;

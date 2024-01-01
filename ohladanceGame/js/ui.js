@@ -35,10 +35,10 @@ export class UI {
         ctx.fillText("CLICK ON SCREEN TO START GAME", 10, this.game.height / 2);
     }
 
+    // sets the width of outer canvas div to place ui elements correctly
     setWidthOuterDiv() {
         let outerDiv = document.getElementById("gameContain");
         outerDiv.style.width = this.game.width + 6 + "px";
-        console.log(outerDiv.style);
     }
 
 

@@ -27,10 +27,10 @@ export class Game {
 
     // method to updatee items on canvas, called from animate every couple miliseconds
     update(deltaTime) {
-        
+        // end check
         this.checkForCollision();
         if (this.obstacleCounter > 0) {
-            if (this.obstacles[this.obstacles.length-1].y > this.player.y + 50) {
+            if (this.obstacles[this.obstacles.length-1].y > this.player.y + 80) {
                 this.ended = true;
             }
         }
@@ -80,7 +80,6 @@ export class Game {
     // addition of one obstaclee
     addObstacle(double) {
         this.obstacles.push(new EnemyBar(this, double));
-        console.log(this.obstacles);
     }
 
     // removal of one obstacle
@@ -92,7 +91,6 @@ export class Game {
         this.obstacles.forEach(obstacle => {
             obstacle.lines.forEach((line, index) => {
 
-                //console.log("x: ", this.player.x, "y:", this.player.y);
                 // from https://stackoverflow.com/questions/21089959/detecting-collision-of-rectangle-with-circle
 
                 // Find the vertical & horizontal (distX/distY) distances between the 
@@ -144,10 +142,10 @@ export class Game {
         // movement with arrow keys
         window.addEventListener("keydown", (e) => {
             if (e.key === "ArrowLeft") {
-                this.player.update(-10);
+                this.player.update(-12);
             }
             if (e.key === "ArrowRight") {
-                this.player.update(10);
+                this.player.update(12);
             }
         });
 
@@ -157,16 +155,11 @@ export class Game {
             window.addEventListener(
                 "deviceorientation",
                 (event) => {
-                    const leftToRight = event.gamma; // gamma: left to right
-                    handleOrientationEvent(leftToRight);
-                },
-                true,
+                    // gamma: left to right
+                    this.player.update(event.gamma *0.4);
+                }
             );
         }
-
-        const handleOrientationEvent = (leftToRight) => {
-            this.player.update(leftToRight *0.4);
-        };
     }
 
 

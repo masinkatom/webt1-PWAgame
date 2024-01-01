@@ -19,7 +19,7 @@
         "name": "Initial D ifficulties",
         "obstacles": 10,
         "speed": 8,
-        "genTime": 3.5
+        "genTime": 3
       },
       {
         "id": 4,
@@ -32,8 +32,8 @@
         "id": 5,
         "name": "Initial D ifficulties",
         "obstacles": 15,
-        "speed": 15,
-        "genTime": 2
+        "speed": 10,
+        "genTime": 1.8
       },
       {
         "id": 6,

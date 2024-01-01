@@ -3,62 +3,72 @@
       {
         "id": 1,
         "name": "Initial D ifficulties",
-        "obstacles": 8,
-        "speed": 1
+        "obstacles": 6,
+        "speed": 1.8,
+        "genTime": 5
       },
       {
         "id": 2,
         "name": "Initial D ifficulties",
-        "obstacles": 10,
-        "speed": 2
+        "obstacles": 8,
+        "speed": 2,
+        "genTime": 4
       },
       {
         "id": 3,
         "name": "Initial D ifficulties",
-        "obstacles": 12,
-        "speed": 2
+        "obstacles": 10,
+        "speed": 8,
+        "genTime": 3.5
       },
       {
         "id": 4,
         "name": "Initial D ifficulties",
         "obstacles": 14,
-        "speed": 3
+        "speed": 3,
+        "genTime": 3.2
       },
       {
         "id": 5,
         "name": "Initial D ifficulties",
         "obstacles": 15,
-        "speed": 3
+        "speed": 15,
+        "genTime": 2
       },
       {
         "id": 6,
         "name": "Initial D ifficulties",
-        "obstacles": 20,
-        "speed": 4
+        "obstacles": 23,
+        "speed": 4,
+        "genTime": 1.8
       },
       {
         "id": 7,
         "name": "Initial D ifficulties",
         "obstacles": 22,
-        "speed": 5
+        "speed": 8,
+        "genTime": 1.2
       },
       {
         "id": 8,
         "name": "Initial D ifficulties",
         "obstacles": 24,
-        "speed": 6
+        "speed": 5,
+        "genTime": 1.3
       },
       {
         "id": 9,
         "name": "Initial D ifficulties",
         "obstacles": 25,
-        "speed": 7
+        "speed": 3,
+        "genTime": 1.5
       },
       {
         "id": 10,
         "name": "Initial D ifficulties",
         "obstacles": 35,
-        "speed": 9
+        "speed": 7,
+        "genTime": 0.9
       }
     ]
   }

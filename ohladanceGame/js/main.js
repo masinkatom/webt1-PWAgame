@@ -13,6 +13,7 @@ let endMsg = document.querySelector(".endscreen");
 let currentLevel = 0;
 let obstacleAmount = 0;
 let speed = 0;
+let genTime = 0;
 
 window.addEventListener("load", async () => {
     await loadData();
@@ -23,13 +24,13 @@ window.addEventListener("load", async () => {
     const gameCanvas = document.getElementById("canvas1");
     const ctx = gameCanvas.getContext("2d");
 
-    console.log("W ", GAME_WIDTH, ", H ", GAME_HEIGHT, ", OBS ", obstacleAmount, ", SPEED ", speed);
+    console.log("W ", GAME_WIDTH, ", H ", GAME_HEIGHT, ", OBS ", obstacleAmount, ", SPEED ", speed, ", GT ", genTime);
 
     gameCanvas.width = GAME_WIDTH;
     gameCanvas.height = GAME_HEIGHT;
     let prevTime = 0;
 
-    let game = new Game(GAME_WIDTH, GAME_HEIGHT, currentLevel, obstacleAmount, speed);
+    let game = new Game(GAME_WIDTH, GAME_HEIGHT, currentLevel, obstacleAmount, speed, genTime);
 
     const handleClickCanvas = () => {
         btnPause.style.display = "flex";
@@ -72,7 +73,7 @@ window.addEventListener("load", async () => {
             }
     
             if (game.failed) {
-                game = new Game(GAME_WIDTH, GAME_HEIGHT, currentLevel, obstacleAmount, speed);
+                game = new Game(GAME_WIDTH, GAME_HEIGHT, currentLevel, obstacleAmount, speed, genTime);
                 gameCanvas.addEventListener("click", handleClickCanvas);
             }
     
@@ -133,4 +134,5 @@ async function loadData() {
 async function getCurrLevelData(level) {
     obstacleAmount = level.obstacles;
     speed = level.speed;
+    genTime = level.genTime;
 }

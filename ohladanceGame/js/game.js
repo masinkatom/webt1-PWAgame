@@ -3,7 +3,7 @@ import { Player } from "./Player.js";
 import { UI } from "./UI.js";
 
 export class Game {
-    constructor(width, height, level, obstacleAmount, speed) {
+    constructor(width, height, level, obstacleAmount, speed, genTime) {
         this.width = width;
         this.height = height;
         this.player = new Player(this);
@@ -12,7 +12,7 @@ export class Game {
         this.obstacleAmount = obstacleAmount;
         this.obstacleCounter = 0;
         this.enemyTimer = 0;
-        this.enemyInterval = 1500;
+        this.enemyInterval = genTime * 1000;
         this.paused = true;
         this.started = false;
         this.failed = false;
@@ -22,7 +22,6 @@ export class Game {
         this.ui = new UI(this);
 
         this.addMovementListeners();
-
         
     }
 
@@ -36,8 +35,6 @@ export class Game {
             }
         }
         
-        
-
         // doubleCounter is to decide whether is it time for obstacle with two "holes"
         if (this.enemyTimer > this.enemyInterval) {
             // generate only certain amount of obstacles
@@ -168,7 +165,7 @@ export class Game {
         }
 
         const handleOrientationEvent = (leftToRight) => {
-            this.player.update(leftToRight);
+            this.player.update(leftToRight *0.4);
         };
     }
 

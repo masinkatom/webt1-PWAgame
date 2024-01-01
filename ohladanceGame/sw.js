@@ -1,6 +1,7 @@
 const cacheName = 'ballin-v1';
 // tu piseme vsetky requesty, ktore chceme aby sa ulozili do cache
 const appAssets = [
+    'manifest.json',
     '',   
     'index.html',
     'chooseLevel.html',
@@ -60,7 +61,7 @@ console.log("sw installed;", e);
 
 self.addEventListener('fetch', (e) => {
     e.respondWith(
-        cashes.match(e.request).then(cacheRes => {
+        caches.match(e.request).then(cacheRes => {
             // return response if found in cache or do a request
             return cacheRes || fetch(e.request);
         })

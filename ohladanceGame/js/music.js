@@ -32,7 +32,7 @@
 			if (value) {
 				this.play();
 			} else {
-				this.pause();
+				MUSIC.pause();
 			}
 		}
 	}

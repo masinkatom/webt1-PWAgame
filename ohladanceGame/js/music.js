@@ -1,6 +1,6 @@
 (() => {
 	const MUSIC = new Audio('music/test.mp3');
-	MUSIC.volume = 0.03;
+	MUSIC.volume = 0.5;
 	MUSIC.loop = true;
 
 	const MUSIC_STORAGE = 'misw-settings-music';

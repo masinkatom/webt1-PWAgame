@@ -20,9 +20,9 @@ export class Game {
         this.doubleCounter = 0;
         this.level = level;
         this.ui = new UI(this);
+        this.keyHandler = this.handleKeys.bind(this);
+        this.gyroHandler = this.handleGyro.bind(this);
 
-        this.addMovementListeners();
-        
     }
 
     // method to updatee items on canvas, called from animate every couple miliseconds
@@ -30,11 +30,12 @@ export class Game {
         // end check
         this.checkForCollision();
         if (this.obstacleCounter > 0) {
-            if (this.obstacles[this.obstacles.length-1].y > this.player.y + 80) {
+            if (this.obstacles[this.obstacles.length - 1].y > this.player.y + 80) {
                 this.ended = true;
+                this.removeMovementListeners()
             }
         }
-        
+
         // doubleCounter is to decide whether is it time for obstacle with two "holes"
         if (this.enemyTimer > this.enemyInterval) {
             // generate only certain amount of obstacles
@@ -46,7 +47,7 @@ export class Game {
                 else {
                     this.addObstacle(false);
                 }
-                this.obstacleCounter ++;
+                this.obstacleCounter++;
                 this.enemyTimer = 0;
                 this.doubleCounter++;
 
@@ -74,7 +75,7 @@ export class Game {
             });
         }
         this.ui.drawCobbles(ctx);
-        
+
     }
 
     // addition of one obstaclee
@@ -140,26 +141,42 @@ export class Game {
 
     addMovementListeners() {
         // movement with arrow keys
-        window.addEventListener("keydown", (e) => {
-            if (e.key === "ArrowLeft") {
-                this.player.update(-12);
-            }
-            if (e.key === "ArrowRight") {
-                this.player.update(12);
-            }
-        });
-
+        window.addEventListener("keydown", this.keyHandler);
 
         // movement with device tilt/gyro sensor
-        if (window.DeviceOrientationEvent) {
-            window.addEventListener(
-                "deviceorientation",
-                (event) => {
-                    // gamma: left to right
-                    this.player.update(event.gamma *0.4);
-                }
-            );
+        // ios support
+        if (
+            DeviceMotionEvent &&
+            typeof DeviceMotionEvent.requestPermission === "function") {
+            DeviceMotionEvent.requestPermission();
         }
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener("deviceorientation", this.gyroHandler);
+        }
+    }
+
+    removeMovementListeners() {
+        window.removeEventListener("keydown", this.keyHandler);
+
+        if (window.DeviceOrientationEvent) {
+            window.removeEventListener("deviceorientation", this.gyroHandler);
+        }
+
+        console.log("removedEventListeners");
+    }
+
+    handleKeys(e) {
+        if (e.key === "ArrowLeft") {
+            this.player.update(-12);
+        }
+        if (e.key === "ArrowRight") {
+            this.player.update(12);
+        }
+    }
+
+    handleGyro(e) {
+        // gamma: left to right
+        this.player.update(e.gamma * 0.4);
     }
 
 

@@ -32,7 +32,7 @@ export class UI {
         ctx.font = 18 + "px " + this.fontFamily;
         ctx.textAlign = "left";
         ctx.fillStyle = this.fontColor;
-        ctx.fillText("CLICK ON SCREEN TO START GAME", 10, this.game.height / 2);
+        ctx.fillText("KLIKNI NA OBRAZOVKU", 10, this.game.height / 2);
     }
 
     // sets the width of outer canvas div to place ui elements correctly

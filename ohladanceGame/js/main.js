@@ -31,6 +31,7 @@ window.addEventListener("load", async () => {
         btnPause.style.display = "flex";
         game.paused = false;
         game.started = true;
+        game.addMovementListeners();
         gameCanvas.removeEventListener("click", handleClickCanvas);
     };
 
@@ -85,6 +86,7 @@ window.addEventListener("load", async () => {
             requestAnimationFrame(animate);
         }
         else {
+            //game.removeMovementListeners();
             endMsg.style.display = "flex";
             let nextLvl = parseInt(currentLevel) + 1;
             if (parseInt(localStorage.getItem("maxLevel")) < nextLvl) {

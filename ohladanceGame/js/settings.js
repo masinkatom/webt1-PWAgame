@@ -1,41 +1,29 @@
-
 function returnToMainPage() {
-  window.location.href = "index.html";
+	window.location.href = "index.html";
 }
 
 function resetGame() {
-  // Funkcia na vymazanie uloženého stavu hry
-  localStorage.removeItem('gameState');
-  // Reset hodnôt checkboxov
-  document.getElementById('musicCheckbox').checked = true;
-  document.getElementById('soundCheckbox').checked = true;
+	// Funkcia na vymazanie uloženého stavu hry
+
+	if (localStorage.getItem("maxLevel") === null) {
+		localStorage.setItem("maxLevel", 1);
+	}
+	else {
+		localStorage.setItem("maxLevel", 1)
+	}
+	// Reset hodnôt checkboxov
+	document.getElementById('musicCheckbox').checked = true;
 }
 
-if (localStorage.getItem("maxLevel") === null) {
-  localStorage.setItem("maxLevel", 1);
-}
-else {
-  localStorage.setItem("maxLevel", 1)
-}
+
 
 document.addEventListener('DOMContentLoaded', function () {
-  const musicCheckbox = document.getElementById('musicCheckbox');
-  const soundCheckbox = document.getElementById('soundCheckbox');
+	const musicCheckbox = document.getElementById('musicCheckbox');
 
+	musicCheckbox.checked = window.music.getValue();
 
-  musicCheckbox.checked = window.music.getValue();
-  soundCheckbox.checked = window.sound.getValue();
+	musicCheckbox.addEventListener('change', function () {
+		window.music.handler(this.checked);
+	});
 
-
-  musicCheckbox.addEventListener('change', function () {
-    window.music.handler(this.checked);
-  });
-
-  soundCheckbox.addEventListener('change', function () {
-    window.sound.handler(this.checked);
-  });
-  soundCheckbox.addEventListener('change', function () {
-    console.log('Sound Checkbox Changed:', this.checked);
-    window.sound.handler(this.checked);
-  });
 });

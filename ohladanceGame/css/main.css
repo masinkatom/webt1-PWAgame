@@ -209,6 +209,11 @@ button:hover {
     button {
         width: 50%;
     }
+    .buttons {
+      width: 50%;
+      text-align: center;
+  }
+    
     .inputGroup {
       width: 50%;
       margin: 0 auto;

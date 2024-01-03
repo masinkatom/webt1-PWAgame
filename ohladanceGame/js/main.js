@@ -1,6 +1,6 @@
 import { Game } from "./Game.js";
 
-let GAME_HEIGHT = window.innerHeight - 9;
+let GAME_HEIGHT = window.innerHeight - 7;
 let GAME_WIDTH = GAME_HEIGHT / 2;
 
 if (GAME_HEIGHT / 2 > window.innerWidth) {

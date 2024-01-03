@@ -16,12 +16,13 @@ body {
 
 header {
     text-align: center;
-    padding: 20px;
+    padding: 5px;
     font-family: 'Didact Gothic', sans-serif;
 }
 
 h1 {
     font-size: 6em;
+    margin: 1rem 0;
 }
 h2{
     font-size: 0,2em;
@@ -55,7 +56,12 @@ button:hover {
     button {
         width: 50%;
     }
+    
+    h1 {
+        font-size: 4em;
+    }
 }
 button + button {
     margin-top: 15px;
 }
+
